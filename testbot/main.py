@@ -3,7 +3,7 @@ import subprocess
 import discord
 from dotenv import load_dotenv
 
-project_folder = os.path.expanduser('~/python/testbot') 
+project_folder = os.path.expanduser('~/python/ValheimDiscordBot/testbot') 
 load_dotenv(os.path.join(project_folder, '.env'))
 
 def details():
