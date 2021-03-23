@@ -33,6 +33,12 @@ def stop_server():
 def restart_server():
     os.system('/home/vhserver/./vhserver restart')
 
+def check_update_server():
+    os.system('/home/vhserver/./vhserver cu')
+    
+def update_server():
+    os.system('/home/vhserver/./vhserver update')
+
 print(number_of_players())
 
 client = discord.Client()
@@ -64,5 +70,10 @@ async def on_message(message):
         await message.channel.send('Restarting server')
         restart_server()
 
+    if message.content.startswith('!vhserver checkupdate'):
+        check_update_server()
+
+    if message.content.startswith('!vhserver update'):
+        update_server()
 
 client.run(os.getenv('TOKEN'))
