@@ -57,7 +57,8 @@ print(number_of_players())
 def findIp():
     l = details()
     for r in l:
-        if str(r).find('Internet IP:'):
+        print(str(r).find('Internet IP:'))
+        if str(r).find('Internet IP:') > -1:
             print(str(r))
 
 client = discord.Client()
