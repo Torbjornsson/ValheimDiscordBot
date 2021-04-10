@@ -94,6 +94,7 @@ async def on_message(message):
         update_server()
 
     if message.content.startswith('!vhserver ip'):
+        await message.channel.send('Fetching ip')
         await message.channel.send(details())
 
 client.run(os.getenv('TOKEN'))
