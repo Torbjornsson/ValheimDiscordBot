@@ -6,7 +6,8 @@ pipeline {
         echo 'Testing'
         sh '''ls -a
 ls -a ../
- ls ../../ ls /'''
+ ls ../../
+ls /'''
       }
     }
 
