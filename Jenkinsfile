@@ -4,7 +4,7 @@ pipeline {
     stage('test') {
       steps {
         echo 'Testing'
-        sh 'readlink -f testbot'
+        sh 'whoami'
         sh 'cp -r testbot /home/vhserver/ValheimDiscordBot'
       }
     }
