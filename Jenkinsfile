@@ -5,7 +5,7 @@ pipeline {
       steps {
         echo 'Testing'
         sh 'whoami'
-        sh 'cp -r testbot /home/vhserver/ValheimDiscordBot'
+        sh 'cp -r testbot /home/vhserver/python/ValheimDiscordBot'
       }
     }
 
