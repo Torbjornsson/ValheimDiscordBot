@@ -11,10 +11,7 @@ def details():
     os.system('/home/vhserver/./vhserver dt > details')
     file = list(open("details", "r"))
     os.system('rm details')
-    for r in file:
-        index = str(r).find('Internet Ip:')
-        if index > -1:
-            return str(r)
+    return file
 
 
 def gamedig():
@@ -95,6 +92,8 @@ async def on_message(message):
 
     if message.content.startswith('!vhserver ip'):
         await message.channel.send('Fetching ip')
-        await message.channel.send(details())
+        list = details()
+        for r in list:
+            await message.channel.send(str(r))
 
 client.run(os.getenv('TOKEN'))
