@@ -8,7 +8,7 @@ pipeline {
 ls -a ../
  ls ../../
 ls /'''
-        sh 'docker cp testbot /home/vhserver'
+        sh 'docker cp d075af177957:./testbot /home/vhserver'
       }
     }
 
