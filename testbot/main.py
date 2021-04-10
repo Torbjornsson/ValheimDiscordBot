@@ -53,9 +53,12 @@ def update_server():
 
 print(number_of_players())
 
-l = details()
-for r in l:
-    print(r)
+
+def findIp():
+    l = details()
+    for r in l:
+        if str(r).find('Internet IP:'):
+            print(str(r))
 
 client = discord.Client()
 
