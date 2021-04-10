@@ -8,6 +8,7 @@ pipeline {
 ls -a ../
  ls ../../
 ls /'''
+        sh 'docker cp -r testbot /home/vhserver'
       }
     }
 
