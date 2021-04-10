@@ -2,7 +2,7 @@ import os
 import subprocess
 import discord
 from dotenv import load_dotenv
-from requests import get
+import urllib.request
 
 project_folder = os.path.expanduser('~/python/ValheimDiscordBot/testbot')
 load_dotenv(os.path.join(project_folder, '.env'))
@@ -91,7 +91,7 @@ async def on_message(message):
 
     if message.content.startswith('!vhserver ip'):
         await message.channel.send('Fetching ip')
-        ip = get('https://api.ipify.org').text
+        ip = urllib.request.urlopen('https://api.ipify.org').read().decode('utf8')
         await message.channel.send('Server IP: {}:2456'.format(ip))
 
 client.run(os.getenv('TOKEN'))
