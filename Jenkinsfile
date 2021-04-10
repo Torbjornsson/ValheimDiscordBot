@@ -4,6 +4,7 @@ pipeline {
     stage('test') {
       steps {
         echo 'Testing'
+        sh 'echo ls'
       }
     }
 
