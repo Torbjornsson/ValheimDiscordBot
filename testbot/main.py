@@ -95,6 +95,6 @@ async def on_message(message):
         list = details()
         await message.channel.send(len(list))
         for r in list:
-            await message.channel.send(str(r))
+            await message.channel.send(r)
 
 client.run(os.getenv('TOKEN'))
