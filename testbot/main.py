@@ -2,6 +2,7 @@ import os
 import subprocess
 import discord
 from dotenv import load_dotenv
+from requests import get
 
 project_folder = os.path.expanduser('~/python/ValheimDiscordBot/testbot')
 load_dotenv(os.path.join(project_folder, '.env'))
@@ -51,16 +52,6 @@ def update_server():
     os.system('/home/vhserver/./vhserver update')
 
 
-print(number_of_players())
-
-
-def findIp():
-    l = details()
-    for r in l:
-        print(str(r).find('Internet IP:'))
-        if str(r).find('Internet IP:') > -1:
-            print(str(r))
-
 client = discord.Client()
 
 
@@ -100,9 +91,7 @@ async def on_message(message):
 
     if message.content.startswith('!vhserver ip'):
         await message.channel.send('Fetching ip')
-        list = details()
-        await message.channel.send(len(list))
-        for r in list:
-            await message.channel.send(r)
+        ip = get('https://api.ipify.org').text
+        await message.channel.send('Server IP: {}:2456'.format(ip))
 
 client.run(os.getenv('TOKEN'))
