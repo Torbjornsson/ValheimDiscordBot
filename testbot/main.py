@@ -93,6 +93,7 @@ async def on_message(message):
     if message.content.startswith('!vhserver ip'):
         await message.channel.send('Fetching ip')
         list = details()
+        await message.channel.send(len(list))
         for r in list:
             await message.channel.send(str(r))
 
