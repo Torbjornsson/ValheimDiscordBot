@@ -53,6 +53,10 @@ def update_server():
 
 print(number_of_players())
 
+l = details()
+for r in l:
+    print(r)
+
 client = discord.Client()
 
 
