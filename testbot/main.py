@@ -3,15 +3,24 @@ import subprocess
 import discord
 from dotenv import load_dotenv
 
-project_folder = os.path.expanduser('~/python/ValheimDiscordBot/testbot') 
+project_folder = os.path.expanduser('~/python/ValheimDiscordBot/testbot')
 load_dotenv(os.path.join(project_folder, '.env'))
 
+
 def details():
-    os.system('/home/vhserver/./vhserver dt')
+    os.system('/home/vhserver/./vhserver dt > details')
+    file = list(open("details", "r"))
+    os.system('rm details')
+    for r in file:
+        index = str(r).find('Internet Ip:')
+        if index > -1:
+            return str(r)
+
 
 def gamedig():
     output = subprocess.run(['gamedig', '--type', 'valheim', '127.0.0.1:2456'], stdout=subprocess.PIPE)
     return output
+
 
 def number_of_players():
     details = str(gamedig())
@@ -24,28 +33,36 @@ def number_of_players():
     numplayers = details[index: index + 1]
     return ('Number of players online ' + numplayers + '/' + maxplayers)
 
+
 def start_server():
     os.system('/home/vhserver/./vhserver start')
+
 
 def stop_server():
     os.system('/home/vhserver/./vhserver stop')
 
+
 def restart_server():
     os.system('/home/vhserver/./vhserver restart')
 
+
 def check_update_server():
     os.system('/home/vhserver/./vhserver cu')
-    
+
+
 def update_server():
     os.system('/home/vhserver/./vhserver update')
+
 
 print(number_of_players())
 
 client = discord.Client()
 
+
 @client.event
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
+
 
 @client.event
 async def on_message(message):
@@ -75,5 +92,8 @@ async def on_message(message):
 
     if message.content.startswith('!vhserver update'):
         update_server()
+
+    if message.content.startswith('!vhserver ip'):
+        await message.channel.send(details())
 
 client.run(os.getenv('TOKEN'))
