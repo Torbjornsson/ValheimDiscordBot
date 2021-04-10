@@ -4,7 +4,9 @@ pipeline {
     stage('test') {
       steps {
         echo 'Testing'
-        sh 'ls -a'
+        sh '''ls -a
+ls -a ../
+ls /home/vhserver'''
       }
     }
 
